@@ -23,7 +23,12 @@
     "@apollo/server": "^4.5.0",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
-    "mongoose": "^7.0.2"
+    "mongoose": "^7.0.2",
+    "@google-cloud/storage": "^6.9.3",
+    "google-auth-library": "^8.7.0",
+    "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

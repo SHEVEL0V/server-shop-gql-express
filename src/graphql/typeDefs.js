@@ -10,10 +10,6 @@ ${User.types}
   type Query {
     ${Products.queries}
     ${User.queries}
-   
-
-  
-  
   }
   
 

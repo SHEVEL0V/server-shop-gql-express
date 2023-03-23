@@ -1,5 +1,7 @@
 /** @format */
 
 export const queries = `#graphql
-  user(id: String!) : User
+  update(id: String!) : User
+
+  login(password: String!, email: String!):User
 `;
