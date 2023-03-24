@@ -17,4 +17,9 @@ export const types = `#graphql
     verify: Boolean
     delivery: String
   }
+
+  type ResUser {
+    user: User
+    token: String
+  }
 `;

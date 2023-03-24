@@ -1,7 +1,7 @@
 /** @format */
 
 import { auth } from "google-auth-library";
-import { ErrorMessage } from "../error";
+import { ErrorMessage } from "../error/index.js";
 
 export const authModelCloud = async () => {
   const keysEnvVar = process.env.CREDS;

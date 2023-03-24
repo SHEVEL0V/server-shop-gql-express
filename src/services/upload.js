@@ -1,8 +1,8 @@
 /** @format */
 import fs from "fs/promises";
-import { authModelCloud } from "./auth";
+import { authModelCloud } from "./auth.js";
 import { Storage } from "@google-cloud/storage";
-import { ErrorMessage } from "../error";
+import { ErrorMessage } from "../error/index.js";
 
 export const uploadFile = async (path, filename) => {
   const jwt = await authModelCloud();

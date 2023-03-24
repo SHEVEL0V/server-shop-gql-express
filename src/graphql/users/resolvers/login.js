@@ -20,5 +20,5 @@ export default async (root, args) => {
 
   const token = jwt.sign({ id, role }, process.env.JWT_SECRET);
 
-  return { ...user, token };
+  return user;
 };

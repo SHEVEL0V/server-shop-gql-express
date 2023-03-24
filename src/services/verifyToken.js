@@ -1,6 +1,6 @@
 /** @format */
 import { OAuth2Client } from "google-auth-library";
-import { ErrorMessage } from "../error";
+import { ErrorMessage } from "../error/index.js";
 
 export const verifyToken = async (token) => {
   const key = process.env.GOOGLE_CLIENT_ID;

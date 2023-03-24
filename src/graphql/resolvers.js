@@ -1,16 +1,21 @@
 /** @format */
 import { Products } from "./products/index.js";
-import { User } from "./user/index.js";
+import { Users } from "./users/index.js";
+import { Ratings } from "./ratings/index.js";
+import { Orders } from "./orders/index.js";
 
 const resolvers = {
   Query: {
-    ...User.resolvers.queries,
-    ...Products.resolvers.queries,
+    ...Users.resolvers.query,
+    ...Products.resolvers.query,
+    ...Orders.resolvers.query,
   },
-  // Mutation: {
-  //   // ...Products.resolvers.mutations,
-  //   // ...User.resolvers.mutations,
-  // },
+  Mutation: {
+    ...Users.resolvers.mutations,
+    ...Products.resolvers.mutations,
+    ...Ratings.resolvers.mutations,
+    ...Orders.resolvers.mutations,
+  },
 };
 
 export default resolvers;

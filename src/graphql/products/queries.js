@@ -1,7 +1,10 @@
 /** @format */
 
 export const queries = `#graphql
-  products(id:String) : [Product!]!
 
-  productById(id:String) : Product!
+  getProducts( query:[String], limit:String, sort:String, page:String ) :ResProducts
+
+  getProductById(id:String) : Product
+
+  getProductsDesc : ProductDesc
 `;
