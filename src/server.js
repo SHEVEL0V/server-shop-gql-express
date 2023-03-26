@@ -6,7 +6,7 @@ import { connectMongoDB } from "./db/connection.js";
 import { verifyToken } from "./services/authorization.js";
 
 import * as dotenv from "dotenv";
-dotenv.config("./graphql/products/types.gql");
+dotenv.config();
 
 export const server = new ApolloServer({
   typeDefs,

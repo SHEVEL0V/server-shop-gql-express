@@ -1,6 +1,6 @@
 {
-  "name": "servershop",
-  "version": "1.0.0",
+  "name": "server-gql",
+  "version": "1.0.1",
   "description": "",
   "main": "./src/server.js",
   "type": "module",
@@ -10,24 +10,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SHEVEL0V/serverShop.git"
+    "url": "git+https://github.com/SHEVEL0V/serverGql.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SHEVEL0V/serverShop/issues"
+    "url": "https://github.com/SHEVEL0V/serverGql/issues"
   },
-  "homepage": "https://github.com/SHEVEL0V/serverShop#readme",
+  "homepage": "https://github.com/SHEVEL0V/serverGql#readme",
   "dependencies": {
     "@apollo/server": "^4.5.0",
-    "dotenv": "^16.0.3",
-    "graphql": "^16.6.0",
-    "mongoose": "^7.0.2",
     "@google-cloud/storage": "^6.9.3",
-    "google-auth-library": "^8.7.0",
     "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "google-auth-library": "^8.7.0",
+    "graphql": "^16.6.0",
     "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
