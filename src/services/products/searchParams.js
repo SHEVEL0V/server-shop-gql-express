@@ -31,9 +31,9 @@ export const searchParams = (params) => {
       return;
     } else {
       //-------- add params to search params-------------------------------------------------------------
-      res.params = {
-        $elemMatch: { name: key, value: { $in: params[key]?.split("-") } },
-      };
+      // res.params = {
+      //   $elemMatch: { name: key, value: { $in: params[key]?.split("-") } },
+      // };
     }
   });
 

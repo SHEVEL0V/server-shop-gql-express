@@ -1,8 +1,7 @@
 /** @format */
 import fs from "fs/promises";
-import { authModelCloud } from "./auth.js";
+import { authModelCloud } from "./authGoogle.js";
 import { Storage } from "@google-cloud/storage";
-import { ErrorMessage } from "../error/index.js";
 
 export const uploadFile = async (path, filename) => {
   const jwt = await authModelCloud();
@@ -12,7 +11,7 @@ export const uploadFile = async (path, filename) => {
 
   //------if path is not provided return error------//
   if (!path) {
-    ErrorMessage("Absent file", 404);
+    throw new Error("Absent file");
   }
   //------upload file to google cloud storage------//
   const [File] = await storage.bucket(bucketName).upload(path, options);
@@ -20,7 +19,7 @@ export const uploadFile = async (path, filename) => {
   fs.unlink(path);
   //------if URL is not provided return error------//
   if (!File) {
-    ErrorMessage("Error upload file");
+    throw new Error("Error uploaded file in Google Cloud Storage");
   }
   return File.metadata;
 };

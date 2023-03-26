@@ -5,29 +5,23 @@ import { Ratings } from "./ratings/index.js";
 import { Orders } from "./orders/index.js";
 
 const typeDefs = `#graphql
-${Users.types}
-${Products.types}
-${Ratings.types}
-${Orders.types}
-
-
+    ${Users.types}
+    ${Products.types}
+    ${Ratings.types}
+    ${Orders.types}
+    
   type Query {
     ${Users.queries}
     ${Products.queries}
     ${Orders.queries}
- 
-
   }
 
   type Mutation {
     ${Users.mutations}
     ${Products.mutations}
-    ${Ratings.mutations}
     ${Orders.mutations}
-
-
-  }
-  
+    ${Ratings.mutations}
+}
 
 `;
 

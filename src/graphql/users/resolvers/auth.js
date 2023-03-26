@@ -1,9 +1,9 @@
 /** @format */
 import UserSchema from "../../../db/schema/user.js";
-import { verifyToken } from "../../../services/verifyToken.js";
+import { verifyToken } from "../../../services/verifyTokenGoogle.js";
 
 export default async (root, args, contextValue) => {
-  const { token } = contextValue;
+  const { user } = contextValue;
 
   //------Verify and decode token------//
   const { email } = await verifyToken(token);

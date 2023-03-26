@@ -1,0 +1,7 @@
+# @format
+
+type Order {
+  user: User
+  orders: [Order]
+  status: String
+}

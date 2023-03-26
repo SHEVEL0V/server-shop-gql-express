@@ -1,8 +1,14 @@
 /** @format */
 
-import { queries } from "./queries.js";
-import { mutations } from "./mutations.js";
 import { resolvers } from "./resolvers/index.js";
-import { types } from "./types.js";
+import { readGql } from "../../helpers/readGqlFile.js";
 
-export const Orders = { queries, mutations, resolvers, types };
+export const Orders = {
+  resolvers,
+  types: readGql("./types.gql", import.meta.url),
+  queries: `#graphql
+         getOrders :Order`,
+  mutations: `#graphql
+        addOrder(id: String):Order
+        updateOrder(status:String, options:String):Order`,
+};

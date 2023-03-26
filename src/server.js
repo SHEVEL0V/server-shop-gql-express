@@ -3,9 +3,10 @@ import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs, resolvers } from "./graphql/index.js";
 import { connectMongoDB } from "./db/connection.js";
+import { verifyToken } from "./services/authorization.js";
 
 import * as dotenv from "dotenv";
-dotenv.config();
+dotenv.config("./graphql/products/types.gql");
 
 export const server = new ApolloServer({
   typeDefs,
@@ -14,6 +15,11 @@ export const server = new ApolloServer({
 
 const { url } = await startStandaloneServer(server, {
   listen: { port: process.env.PORT || 4000 },
+
+  context: async ({ req, res }) => {
+    const token = req.headers.authorization;
+    return token ? await verifyToken(token) : {};
+  },
 });
 
 console.log(`🚀 Server ready at ${url}`);

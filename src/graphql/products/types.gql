@@ -1,0 +1,59 @@
+# @format
+
+type Param {
+  name: String
+  value: String
+}
+
+type Product {
+  _id: ID
+  name: String
+  price: Int
+  rating: Int
+  img: String
+  type: String
+  brand: String
+  desc: String
+  params: [Param]
+}
+
+type ProductDesc {
+  price: [Int]
+  types: String
+  brands: String
+  params: [Param]
+}
+
+type ResProducts {
+  results: [Product]
+  count: Int!
+}
+
+# ---INPUT ---
+
+input InpParam {
+  name: String
+  value: String
+}
+
+input QueryParams {
+  limit: String
+  sort: String
+  page: String
+  search: String
+  brand: String
+  type: String
+  price: String
+  options: [InpParam]
+}
+
+input InpProduct {
+  name: String!
+  price: Int!
+  rating: Int
+  img: String
+  type: String
+  brand: String!
+  desc: String
+  params: [InpParam]
+}

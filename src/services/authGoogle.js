@@ -1,13 +1,12 @@
 /** @format */
 
 import { auth } from "google-auth-library";
-import { ErrorMessage } from "../error/index.js";
 
 export const authModelCloud = async () => {
   const keysEnvVar = process.env.CREDS;
 
   if (!keysEnvVar) {
-    ErrorMessage("The $CREDS environment variable was not found!");
+    throw new Error("The $CREDS environment variable was not found!");
   }
 
   const keys = JSON.parse(keysEnvVar);

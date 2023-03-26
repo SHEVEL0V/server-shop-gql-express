@@ -1,7 +1,7 @@
 /** @format */
 import bcrypt from "bcrypt";
 import UserSchema from "../../../db/schema/user.js";
-import { ErrorMessage } from "../../../error/index.js";
+import { GraphQLError } from "graphql";
 import { uploadFile } from "../../../services/upload.js";
 
 export default async (root, args, contextValue) => {
@@ -13,8 +13,10 @@ export default async (root, args, contextValue) => {
 
   // -----Upload avatar-----//
   if (path) {
-    const { mediaLink } = await uploadFile(path, filename);
-    avatarURL = mediaLink;
+    const { mediaLink } = await uploadFile(path, filename).catch((err) =>
+      GraphQLError(err.message)
+    );
+    const avatarURL = mediaLink;
   }
 
   // -----Password hash-----//
@@ -25,7 +27,7 @@ export default async (root, args, contextValue) => {
   // -----Update User -----//
   await UserSchema.findByIdAndUpdate(id, {
     $set: { ...body, avatarURL, ...password },
-  }).catch((err) => ErrorMessage("User not updated", err.message));
+  }).catch((err) => GraphQLError("User not updated"));
 
   // -----Fin Update User -----//
   const newUser = await UserSchema.findById(id);

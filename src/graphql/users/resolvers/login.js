@@ -2,7 +2,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import UserSchema from "../../../db/schema/user.js";
-import { ErrorMessage } from "../../../error/index.js";
+import { GraphQLError } from "graphql";
 
 export default async (root, args) => {
   const { password, email } = args;
@@ -11,14 +11,14 @@ export default async (root, args) => {
   const user = await UserSchema.findOne({ email });
 
   if (!user) {
-    ErrorMessage(`No user with email: ${email} found`, 401);
+    GraphQLError(`No user with email: ${email} found`);
   }
   //------Password Validation-----//
   if (!(await bcrypt.compare(password, user.password))) {
-    ErrorMessage(`password:${password} is wrong  `, 401);
+    GraphQLError(`Password:${password} is wrong  `);
   }
 
   const token = jwt.sign({ id, role }, process.env.JWT_SECRET);
 
-  return user;
+  return { user, token };
 };

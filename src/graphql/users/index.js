@@ -1,8 +1,16 @@
 /** @format */
 
-import { queries } from "./queries.js";
-import { mutations } from "./mutations.js";
 import { resolvers } from "./resolvers/index.js";
-import { types } from "./types.js";
+import { readGql } from "../../helpers/readGqlFile.js";
 
-export const Users = { queries, mutations, resolvers, types };
+export const Users = {
+  resolvers,
+  types: readGql("./types.gql", import.meta.url),
+  queries: `#graphql
+      loginUser(password: String!, email: String!):ResUser
+`,
+
+  mutations: `#graphql
+      registerUser(password: String!, email: String!):ResUser
+      updateUser(id: String!) : User`,
+};

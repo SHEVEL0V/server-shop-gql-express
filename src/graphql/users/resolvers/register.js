@@ -1,7 +1,7 @@
 /** @format */
-import { ErrorMessage } from "../../../error/index.js";
 import UserSchema from "../../../db/schema/user.js";
 import bcrypt from "bcrypt";
+import { GraphQLError } from "graphql";
 
 export default async (root, args) => {
   const { password, email } = args;
@@ -10,7 +10,7 @@ export default async (root, args) => {
   const user = await UserSchema.findOne({ email });
 
   if (user) {
-    ErrorMessage("User already exists", 400);
+    GraphQLError("User already exists");
   }
   //-----Hash password-----//
   const passwordBcrypt = await bcrypt.hash(password, 10);
@@ -18,7 +18,7 @@ export default async (root, args) => {
   //-----Save user to database-----//
   const newUser = new UserSchema({ ...req.body, password: passwordBcrypt });
 
-  await newUser.save();
+  await newUser.save().catch((err) => GraphQLError("User not saved"));
 
   return newUser;
 };

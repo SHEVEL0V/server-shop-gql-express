@@ -1,14 +1,9 @@
-/** @format */
-
-export const types = `#graphql
+# @format
 
 type Rate {
-  
   userId: ID
 
   itemId: ID
 
   rate: Int
 }
-
-`;

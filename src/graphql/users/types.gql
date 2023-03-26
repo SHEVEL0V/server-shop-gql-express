@@ -1,0 +1,22 @@
+# @format
+
+enum RoleUser {
+  user
+  admin
+}
+
+type User {
+  name: String!
+  telephone: String!
+  password: String!
+  email: String!
+  role: String!
+  avatarURL: String
+  verify: Boolean
+  delivery: String
+}
+
+type ResUser {
+  user: User
+  token: String
+}

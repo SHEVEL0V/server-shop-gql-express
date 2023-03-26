@@ -1,8 +1,9 @@
 /** @format */
-
-import { queries } from "./queries.js";
-import { mutations } from "./mutations.js";
+import { readGql } from "../../helpers/readGqlFile.js";
 import { resolvers } from "./resolvers.js";
-import { types } from "./types.js";
-
-export const Ratings = { queries, mutations, resolvers, types };
+export const Ratings = {
+  resolvers,
+  types: readGql("./types.gql", import.meta.url),
+  mutations: `#graphql
+            updateRate( status:String, options:String): Rate`,
+};
