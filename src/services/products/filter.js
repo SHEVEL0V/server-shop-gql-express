@@ -20,7 +20,10 @@ const params = (products) => {
     });
   });
 
-  return options;
+  return Object.keys(options).map((key) => ({
+    name: key,
+    value: options[key],
+  }));
 };
 
 export const filter = { types, params, brands };

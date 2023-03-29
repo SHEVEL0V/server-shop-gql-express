@@ -8,13 +8,13 @@ import { wrapper } from "../../../helpers/wrapper.js";
 
 const query = {
   getProducts: wrapper(get),
-  getProductById: getById,
-  getProductsDesc: getDesc,
+  getProductById: wrapper(getById),
+  getProductsDesc: wrapper(getDesc),
 };
 
 const mutations = {
-  addProduct: add,
-  updateProduct: update,
+  addProduct: wrapper(add),
+  updateProduct: wrapper(update),
 };
 
 export const resolvers = { query, mutations };

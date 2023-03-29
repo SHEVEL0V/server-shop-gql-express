@@ -2,7 +2,7 @@
 
 type Param {
   name: String
-  value: String
+  value: [String]
 }
 
 type Product {
@@ -19,8 +19,8 @@ type Product {
 
 type ProductDesc {
   price: [Int]
-  types: String
-  brands: String
+  types: [String]
+  brands: [String]
   params: [Param]
 }
 
