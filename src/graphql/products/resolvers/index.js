@@ -4,6 +4,7 @@ import getById from "./getById.js";
 import getDesc from "./getDesc.js";
 import add from "./add.js";
 import update from "./update.js";
+import remove from "./remove.js";
 import { wrapper } from "../../../helpers/wrapper.js";
 
 const query = {
@@ -15,6 +16,7 @@ const query = {
 const mutations = {
   addProduct: wrapper(add),
   updateProduct: wrapper(update),
+  removeProduct: wrapper(remove),
 };
 
 export const resolvers = { query, mutations };

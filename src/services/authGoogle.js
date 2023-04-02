@@ -10,14 +10,13 @@ export const authModelCloud = async () => {
   }
 
   const keys = JSON.parse(keysEnvVar);
-
   // load the JWT or UserRefreshClient from the keys
   const client = auth.fromJSON(keys);
   // __________________________________________________________________________
   client.scopes = ["https://www.googleapis.com/auth/cloud-platform"];
   const url = `https://dns.googleapis.com/dns/v1/projects/${keys.project_id}`;
   const res = await client.request({ url });
-  console.log(`Connect google storage "${res.data.id}" `);
+  console.log(`🔑 Connect google storage "${res.data.id}" `);
   // __________________________________________________________________________
   return client;
 };

@@ -1,6 +1,9 @@
 # @format
-
 type Param {
+  name: String
+  value: String
+}
+type ParamDesc {
   name: String
   value: [String]
 }
@@ -21,12 +24,16 @@ type ProductDesc {
   price: [Int]
   types: [String]
   brands: [String]
-  params: [Param]
+  params: [ParamDesc]
 }
 
 type ResProducts {
   results: [Product]
   count: Int!
+}
+
+type ResMessage {
+  message: String
 }
 
 # ---INPUT ---
@@ -55,12 +62,13 @@ input QueryParams {
 }
 
 input InpProduct {
-  name: String!
-  price: Int!
-  rating: Int
-  img: String
+  id: String
+  name: String
+  price: Int
   type: String
-  brand: String!
+  brand: String
   desc: String
+  img: String
   params: [InpParam]
+  file: Upload
 }

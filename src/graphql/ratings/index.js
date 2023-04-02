@@ -5,5 +5,5 @@ export const Ratings = {
   resolvers,
   types: readGql("./types.gql", import.meta.url),
   mutations: `#graphql
-            updateRate( status:String, options:String): Rate`,
+            updateRate( itemId:ID, rate:Int): String`,
 };

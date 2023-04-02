@@ -8,20 +8,13 @@ export default async (root, args, context) => {
 
   const results = await productSchema
     //----------find product and sort and skip and limit ----------//
-    .find(searchParams(page))
+    .find(searchParams(args?.query))
     .sort(sortParams(sort))
     .skip(page ? limit * (page - 1) : null)
     .limit(limit);
 
-  if (!results) {
-    throw new Error("Error find products");
-  }
   //--------count products--------//
-  const count = await productSchema.countDocuments(searchParams(page));
-
-  if (!count) {
-    throw new Error("Error find count products");
-  }
+  const count = await productSchema.countDocuments(searchParams(args?.query));
 
   return { count, results };
 };

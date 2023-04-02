@@ -1,34 +1,22 @@
 /** @format */
 
 import productSchema from "../../../db/schema/product.js";
-import { uploadFile } from "../../../services/upload.js";
-import { GraphQLError } from "graphql";
 
-export default async (root, args, context) => {
-  const { path, filename } = args.file || {};
-  const { id } = args;
-  // const options = JSON.parse(req.body.options);
+export default async (root, { update }, context) => {
+  const { id, img } = update;
 
-  let img = args.img;
-  //-------if img is not present in the request body------------------------//
-  if (path) {
-    //-------upload the image to google cloud storage-----------------------//
-    const { mediaLink } = await uploadFile(path, filename);
+  let mediaLink = img;
 
-    if (!mediaLink) {
-      throw new GraphQLError("Error uploading image to cloud storage");
-    }
+  //---------upload file to google cloud storage---------//
+  const file = update.file.promise;
+  if (file) {
+    mediaLink = await uploadFileCloudStorage(file);
   }
+
   //-------update the product in the database-------------------------------//
   const response = await productSchema.findByIdAndUpdate(id, {
-    ...req.body,
-    img: mediaLink,
-    options,
+    $set: { ...update, img: mediaLink },
   });
 
-  if (!response) {
-    throw new GraphQLError("Error updating product");
-  }
-
-  return response;
+  return { message: `Products ${response.name} updated successfully` };
 };

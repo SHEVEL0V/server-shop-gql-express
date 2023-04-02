@@ -7,10 +7,10 @@ export const Users = {
   resolvers,
   types: readGql("./types.gql", import.meta.url),
   queries: `#graphql
-      loginUser(password: String!, email: String!):ResUser
-`,
-
+      getUser:User`,
   mutations: `#graphql
-      registerUser(password: String!, email: String!):ResUser
-      updateUser(id: String!) : User`,
+      authUser(token:String!):ResUser
+      loginUser(user: InpUserLog):ResUser
+      registerUser(user:InpUserReg):ResUser
+      updateUser(user: InpUserUpdate) : User`,
 };

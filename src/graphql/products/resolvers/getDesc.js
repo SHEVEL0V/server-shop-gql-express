@@ -1,7 +1,6 @@
 /** @format */
 import productSchema from "../../../db/schema/product.js";
 import { filter } from "../../../services/products/filter.js";
-import { GraphQLError } from "graphql";
 
 export default async (root, args, context) => {
   const products = await productSchema.find();
@@ -10,7 +9,7 @@ export default async (root, args, context) => {
   const { price: min = 0 } = await productSchema.findOne().sort({ price: 1 });
 
   if (!products || !max || !min) {
-    throw new GraphQLError("Error finding description ");
+    throw new Error("Error finding description ");
   }
 
   return {

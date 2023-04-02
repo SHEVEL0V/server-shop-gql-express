@@ -1,36 +1,36 @@
 /** @format */
 import bcrypt from "bcrypt";
 import UserSchema from "../../../db/schema/user.js";
-import { GraphQLError } from "graphql";
-import { uploadFile } from "../../../services/upload.js";
+import { ErrorHandler } from "../../../helpers/errors.js";
+import { uploadFileCloudStorage } from "../../../services/uploadFileCloudStorage.js";
 
-export default async (root, args, contextValue) => {
-  const { path, filename } = args.file;
-  const { id } = contextValue.user;
-  const { body } = args;
+export default async (root, { user }, { token }) => {
+  const { file } = user;
 
-  let avatarURL = body.picture;
+  if (!token) {
+    throw ErrorHandler("Not authorize", 401);
+  }
+
+  let avatarURL = user.avatarURL;
 
   // -----Upload avatar-----//
-  if (path) {
-    const { mediaLink } = await uploadFile(path, filename).catch((err) =>
-      GraphQLError(err.message)
-    );
-    const avatarURL = mediaLink;
+  if (file) {
+    const img = await uploadFileCloudStorage(file);
+    const avatarURL = img;
   }
 
   // -----Password hash-----//
-  const password = body.password
-    ? { password: await bcrypt.hash(body.password, 10) }
+  const password = user.password
+    ? { password: await bcrypt.hash(user.password, 10) }
     : undefined;
 
   // -----Update User -----//
-  await UserSchema.findByIdAndUpdate(id, {
-    $set: { ...body, avatarURL, ...password },
-  }).catch((err) => GraphQLError("User not updated"));
+  await UserSchema.findByIdAndUpdate(token.id, {
+    $set: { ...user, avatarURL, ...password },
+  }).catch((err) => ErrorHandler("User not updated"));
 
   // -----Fin Update User -----//
-  const newUser = await UserSchema.findById(id);
+  const newUser = await UserSchema.findById(token.id);
 
   return newUser;
 };

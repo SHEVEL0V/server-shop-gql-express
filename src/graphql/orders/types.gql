@@ -1,6 +1,10 @@
 # @format
 
 type Order {
+  product: String
+}
+
+type Orders {
   user: User
   orders: [Order]
   status: String

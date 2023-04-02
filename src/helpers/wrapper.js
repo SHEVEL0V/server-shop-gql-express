@@ -1,5 +1,4 @@
 /** @format */
-import { GraphQLError } from "graphql";
 
 export const wrapper =
   (fun) =>
@@ -8,11 +7,6 @@ export const wrapper =
       return await fun(...args);
     } catch (err) {
       console.error(`🔴 ${err.message} `);
-      throw new GraphQLError(err.message, {
-        extensions: {
-          code: "Bad request",
-          http: { status: 400 },
-        },
-      });
+      throw err;
     }
   };

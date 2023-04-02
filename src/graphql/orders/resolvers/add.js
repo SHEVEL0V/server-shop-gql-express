@@ -6,9 +6,9 @@ export default async (root, args, context) => {
   const { orders } = args;
 
   //---------add order to database------------------------//
-  const newProduct = new OrderSchema({ orders, user: id });
+  const newOrder = new OrderSchema({ orders, user: id });
 
-  await newProduct.save();
+  await newOrder.save();
 
-  return newProduct;
+  return { message: ` Order  added successfully` };
 };

@@ -20,3 +20,25 @@ type ResUser {
   user: User
   token: String
 }
+
+input InpUserLog {
+  password: String!
+  email: String!
+}
+
+input InpUserReg {
+  name: String!
+  telephone: String!
+  password: String!
+  email: String!
+  password_again: String
+}
+
+input InpUserUpdate {
+  name: String
+  telephone: String
+  password: String
+  password_again: String
+  file: Upload
+  delivery: String
+}

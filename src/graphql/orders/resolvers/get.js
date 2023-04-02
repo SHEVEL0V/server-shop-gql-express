@@ -3,7 +3,7 @@
 import OrderSchema from "../../../db/schema/orders.js";
 
 export default async (root, args, context) => {
-  const { status, date = undefined } = args;
+  const { status, date } = args;
 
   //-----------optional  params status-----------//
   const searchStatus = status ? { status } : undefined;

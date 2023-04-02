@@ -1,24 +1,22 @@
 /** @format */
 
 import productSchema from "../../../db/schema/product.js";
-import { uploadFile } from "../../../services/upload.js";
+import { uploadFileCloudStorage } from "../../../services/uploadFileCloudStorage.js";
 
 export default async (root, args, context) => {
-  const { path, filename } = args.file;
-  const options = args;
+  const options = args.add;
 
-  //------parse options to json------//
-  //   const options = JSON.parse(req.body.options);
   //---------upload file to google cloud storage---------//
-  const { mediaLink } = await uploadFile(path, filename);
+  const file = args.add.file.promise;
+  const img = await uploadFileCloudStorage(file);
+
   //-----create new product-----//
   const newProduct = new productSchema({
-    ...req.body,
-    img: mediaLink,
-    options,
+    ...options,
+    img,
   });
 
   await newProduct.save();
 
-  return newProduct;
+  return  { message: `Products ${newProduct.name} add successfully` }
 };

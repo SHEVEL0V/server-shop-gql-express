@@ -5,11 +5,12 @@ import { Ratings } from "./ratings/index.js";
 import { Orders } from "./orders/index.js";
 
 const typeDefs = `#graphql
+scalar Upload
     ${Users.types}
     ${Products.types}
     ${Ratings.types}
     ${Orders.types}
-    
+     
   type Query {
     ${Users.queries}
     ${Products.queries}
