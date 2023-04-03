@@ -7,8 +7,8 @@ export const Orders = {
   resolvers,
   types: readGql("./types.gql", import.meta.url),
   queries: `#graphql
-         getOrders :Orders`,
+         getOrders(query:QueryOrder) :[Orders]`,
   mutations: `#graphql
-        addOrder(id: String):Order
-        updateOrder(status:String, options:String):Order`,
+        addOrder(add: [AddOrder]):Message
+        updateOrder(update:UpdateOrder):Message`,
 };

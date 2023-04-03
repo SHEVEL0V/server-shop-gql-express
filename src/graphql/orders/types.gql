@@ -1,11 +1,41 @@
 # @format
 
 type Order {
-  product: String
+  brand: String
+  desc: String
+  img: String
+  name: String
+  price: Int
+  qty: Int
+  rating: Int
+  _id: ID
 }
 
 type Orders {
   user: User
   orders: [Order]
+  status: String
+  createdAt: Date
+  _id: ID
+}
+
+input QueryOrder {
+  date: String
+  status: String
+}
+
+input AddOrder {
+  brand: String
+  desc: String
+  img: String
+  name: String
+  price: Int
+  qty: Int
+  rating: Int
+  _id: ID
+}
+
+input UpdateOrder {
+  ids: [ID]
   status: String
 }

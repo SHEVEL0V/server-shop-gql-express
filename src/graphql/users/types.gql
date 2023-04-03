@@ -36,9 +36,11 @@ input InpUserReg {
 
 input InpUserUpdate {
   name: String
+  email: String
   telephone: String
   password: String
-  password_again: String
+  password2: String
   file: Upload
   delivery: String
+  avatarURL: String
 }

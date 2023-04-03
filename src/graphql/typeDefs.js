@@ -6,6 +6,9 @@ import { Orders } from "./orders/index.js";
 
 const typeDefs = `#graphql
 scalar Upload
+scalar Date
+type Message {message:String}
+
     ${Users.types}
     ${Products.types}
     ${Ratings.types}

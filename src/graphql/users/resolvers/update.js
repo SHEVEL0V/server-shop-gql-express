@@ -5,7 +5,7 @@ import { ErrorHandler } from "../../../helpers/errors.js";
 import { uploadFileCloudStorage } from "../../../services/uploadFileCloudStorage.js";
 
 export default async (root, { user }, { token }) => {
-  const { file } = user;
+  const file = user.file.promise;
 
   if (!token) {
     throw ErrorHandler("Not authorize", 401);
@@ -13,10 +13,9 @@ export default async (root, { user }, { token }) => {
 
   let avatarURL = user.avatarURL;
 
-  // -----Upload avatar-----//
+  //-----Upload avatar-----//
   if (file) {
-    const img = await uploadFileCloudStorage(file);
-    const avatarURL = img;
+    avatarURL = await uploadFileCloudStorage(file);
   }
 
   // -----Password hash-----//
@@ -29,8 +28,5 @@ export default async (root, { user }, { token }) => {
     $set: { ...user, avatarURL, ...password },
   }).catch((err) => ErrorHandler("User not updated"));
 
-  // -----Fin Update User -----//
-  const newUser = await UserSchema.findById(token.id);
-
-  return newUser;
+  return { message: "User updated successfully" };
 };

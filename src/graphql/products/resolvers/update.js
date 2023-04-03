@@ -1,6 +1,7 @@
 /** @format */
 
 import productSchema from "../../../db/schema/product.js";
+import { uploadFileCloudStorage } from "../../../services/uploadFileCloudStorage.js";
 
 export default async (root, { update }, context) => {
   const { id, img } = update;
