@@ -11,7 +11,7 @@ type Order {
   _id: ID
 }
 
-type Orders {
+type UserOrders {
   user: User
   orders: [Order]
   status: String

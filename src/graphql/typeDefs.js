@@ -7,7 +7,6 @@ import { Orders } from "./orders/index.js";
 const typeDefs = `#graphql
 scalar Upload
 scalar Date
-type Message {message:String}
 
     ${Users.types}
     ${Products.types}
@@ -24,7 +23,7 @@ type Message {message:String}
     ${Users.mutations}
     ${Products.mutations}
     ${Orders.mutations}
-    ${Ratings.mutations}
+    ${Ratings.mutations}  
 }
 
 `;

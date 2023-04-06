@@ -15,5 +15,5 @@ export default async (root, args, context) => {
 
   await newOrder.save();
 
-  return { message: ` Order  added successfully` };
+  return newOrder;
 };

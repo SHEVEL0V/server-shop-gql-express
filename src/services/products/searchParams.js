@@ -29,11 +29,17 @@ export const searchParams = (params) => {
       //-------- add type || brand to search params -----------------------------------------------------
       res[key] = { $in: params[key]?.split("-") };
       return;
+    }
+    //--------add options to search params----------------------------------------------------------------
+    if (key === "options") {
+      params[key].map(
+        ({ name, value }) =>
+          (res.params = {
+            $elemMatch: { name, value: { $in: value?.split("-") } },
+          })
+      );
     } else {
-      //-------- add params to search params-------------------------------------------------------------
-      // res.params = {
-      //   $elemMatch: { name: key, value: { $in: params[key]?.split("-") } },
-      // };
+      return;
     }
   });
 

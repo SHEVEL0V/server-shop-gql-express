@@ -12,5 +12,5 @@ export const Users = {
       authUser(token:String!):ResUser
       loginUser(user: InpUserLog):ResUser
       registerUser(user:InpUserReg):ResUser
-      updateUser(user: InpUserUpdate) : Message`,
+      updateUser(user: InpUserUpdate) : User`,
 };

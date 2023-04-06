@@ -10,9 +10,14 @@ export default async (root, args, context) => {
   }
 
   //------update  order status------//
-  ids.map(
-    async (id) => await OrderSchema.findByIdAndUpdate(id, { $set: { status } })
+  const res = await Promise.all(
+    ids.map(
+      async (id) =>
+        await OrderSchema.findByIdAndUpdate(id, { $set: { status } }).populate(
+          "user"
+        )
+    )
   );
 
-  return { message: "Status update successful" };
+  return res;
 };

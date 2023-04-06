@@ -19,5 +19,5 @@ export default async (root, { update }, context) => {
     $set: { ...update, img: mediaLink },
   });
 
-  return { message: `Products ${response.name} updated successfully` };
+  return response;
 };

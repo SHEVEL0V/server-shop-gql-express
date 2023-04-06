@@ -11,7 +11,7 @@ export const Products = {
         getProductsDesc : ProductDesc
   `,
   mutations: `#graphql
-        addProduct(add:InpProduct):ResMessage
-        updateProduct(update:InpProduct):ResMessage
-        removeProduct(ids:[String]):ResMessage`,
+        addProduct(add:InpProduct):Product
+        updateProduct(update:InpProduct):Product
+        removeProduct(ids:[String]):[Product]`,
 };

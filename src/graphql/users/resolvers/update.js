@@ -24,9 +24,9 @@ export default async (root, { user }, { token }) => {
     : undefined;
 
   // -----Update User -----//
-  await UserSchema.findByIdAndUpdate(token.id, {
+  const res = await UserSchema.findByIdAndUpdate(token.id, {
     $set: { ...user, avatarURL, ...password },
   }).catch((err) => ErrorHandler("User not updated"));
 
-  return { message: "User updated successfully" };
+  return res;
 };

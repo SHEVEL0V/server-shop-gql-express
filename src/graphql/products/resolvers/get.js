@@ -11,7 +11,7 @@ export default async (root, args, context) => {
     .find(searchParams(args?.query))
     .sort(sortParams(sort))
     .skip(page ? limit * (page - 1) : null)
-    .limit(limit);
+    .limit((limit = 4));
 
   //--------count products--------//
   const count = await productSchema.countDocuments(searchParams(args?.query));

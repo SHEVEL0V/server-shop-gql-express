@@ -18,5 +18,5 @@ export default async (root, args, context) => {
 
   await newProduct.save();
 
-  return  { message: `Products ${newProduct.name} add successfully` }
+  return newProduct;
 };
