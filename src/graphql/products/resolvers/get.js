@@ -4,7 +4,9 @@ import { searchParams } from "../../../services/products/searchParams.js";
 import { sortParams } from "../../../services/products/sortParams.js";
 
 export default async (root, args, context) => {
-  const { limit = 4, sort, page } = args.query || {};
+  const limit = args.query || 4;
+  const sort = args.query || null;
+  const page = args.query || 1;
 
   const results = await productSchema
     //----------find product and sort and skip and limit ----------//
